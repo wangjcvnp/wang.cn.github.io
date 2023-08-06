@@ -32,64 +32,123 @@
 	</head>
 
 	<body>
-		<a href="1index.html" class="button">佳佳和习狗的抽奖池</a>
+		body>
+		<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+			<div class="center">
+			  <canvas id="gameCanvas" width="400" height="400"></canvas>
+			  <a href="1index.html" class="button" style="display: none;">点击按钮</a>
+			</div>
+		  
+			<div class="content"></div>
+		  
+			<style>
+			  .center {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+			  }
+		  
+			  .button {
+				display: inline-block;
+				padding: 10px 20px;
+				background-color: #4CAF50;
+				color: white;
+				text-decoration: none;
+				border-radius: 25px;
+				cursor: pointer;
+				font-size: 20px;
+				transition: transform 0.3s ease-in-out;
+			  }
+		  
+			  .button:hover {
+				transform: scale(1.2);
+			  }
+		  
+			  .animate {
+				animation: fade-in 1s ease-in-out;
+			  }
+		  
+			  @keyframes fade-in {
+				0% {
+				  opacity: 0;
+				}
+				100% {
+				  opacity: 1;
+				}
+			  }
+			</style>
+		  
+			<script>
+			  var button = document.querySelector('.button');
+			  var content = document.querySelector('.content');
+			  var gameCanvas = document.getElementById('gameCanvas');
+			  var ctx = gameCanvas.getContext('2d');
+		  
+			  var snake = [{ x: 10, y: 10 }];
+			  var food = { x: 5, y: 5 };
+			  var direction = 'right';
+			  var gameInterval;
+		  
+			  function drawSnake() {
+				ctx.fillStyle = 'green';
+				ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+				snake.forEach(function (segment) {
+				  ctx.fillRect(segment.x * 20, segment.y * 20, 20, 20);
+				});
+			  }
+		  
+			  function drawFood() {
+				ctx.fillStyle = 'red';
+				ctx.fillRect(food.x * 20, food.y * 20, 20, 20);
+			  }
+		  
+			  function moveSnake() {
+				var head = { x: snake[0].x, y: snake[0].y };
+		  
+				if (direction === 'right') head.x += 1;
+				if (direction === 'left') head.x -= 1;
+				if (direction === 'up') head.y -= 1;
+				if (direction === 'down') head.y += 1;
+		  
+				snake.unshift(head);
+		  
+				if (head.x === food.x && head.y === food.y) {
+				  // Snake ate the food
+				  food.x = Math.floor(Math.random() * gameCanvas.width / 20);
+				  food.y = Math.floor(Math.random() * gameCanvas.height / 20);
+				} else {
+				  snake.pop();
+				}
+		  
+				if (head.x < 0 || head.x >= gameCanvas.width / 20 || head.y < 0 || head.y >= gameCanvas.height / 20) {
+				  // Snake hit the wall, game over
+				  clearInterval(gameInterval);
+				  button.style.display = 'inline-block';
+				  content.classList.add('animate');
+				}
+		  
+				drawSnake();
+				drawFood();
+			  }
+		  
+			  document.addEventListener('keydown', function (event) {
+				if (event.key === 'ArrowRight' && direction !== 'left') direction = 'right';
+				if (event.key === 'ArrowLeft' && direction !== 'right') direction = 'left';
+				if (event.key === 'ArrowUp' && direction !== 'down') direction = 'up';
+				if (event.key === 'ArrowDown' && direction !== 'up') direction = 'down';
+			  });
+		  
+			  gameInterval = setInterval(moveSnake, 200);
+		  
+			  setTimeout(function () {
+				button.style.display = 'inline-block';
+				content.classList.add('animate');
+			  }, 15000);
+			</script>
+		  </body>
+		  
 
-<div class="content"></div>
-		
-<div class="content"></div>
-
-<div class="content"></div>
-
-<style>
-	.center {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-	}
-
-	.button {
-		display: inline-block;
-		padding: 10px 20px;
-		background-color: #4CAF50;
-		color: white;
-		text-decoration: none;
-		border-radius: 25px;
-		cursor: pointer;
-		font-size: 20px;
-		transition: transform 0.3s ease-in-out;
-	}
-
-	.button:hover {
-		transform: scale(1.2);
-	}
-
-	.animate {
-		animation: fade-in 1s ease-in-out;
-	}
-
-	@keyframes fade-in {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-</style>
-
-<script>
-	var button = document.querySelector('.button');
-	var content = document.querySelector('.content');
-
-	button.addEventListener('click', function() {
-		// 改变页面背景颜色
-		document.body.style.backgroundColor = 'lightblue';
-
-		// 显示动画效果
-		content.classList.add('animate');
-	});
-</script>
 		<audio autoplay="autopaly" loop="loop">
 	<source src="renxi.mp3" type="audio/mp3" /></audio>
 		<div id="main">
