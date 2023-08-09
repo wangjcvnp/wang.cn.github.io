@@ -31,53 +31,64 @@
 		</script>
 	</head>
 
-	<body>
-		body>
-		<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-			<div class="center">
-			  <canvas id="gameCanvas" width="400" height="400"></canvas>
-			  <a href="1index.html" class="button" style="display: none;">点击按钮</a>
-			</div>
-		  
-			<div class="content"></div>
-		  
-			<style>
-			  .center {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100%;
-			  }
-		  
-			  .button {
-				display: inline-block;
-				padding: 10px 20px;
-				background-color: #4CAF50;
-				color: white;
-				text-decoration: none;
-				border-radius: 25px;
-				cursor: pointer;
-				font-size: 20px;
-				transition: transform 0.3s ease-in-out;
-			  }
-		  
-			  .button:hover {
-				transform: scale(1.2);
-			  }
-		  
-			  .animate {
-				animation: fade-in 1s ease-in-out;
-			  }
-		  
-			  @keyframes fade-in {
-				0% {
-				  opacity: 0;
-				}
-				100% {
-				  opacity: 1;
-				}
-			  }
-			</style>
+	<body style="display: flex; justify-content: flex-start; align-items: center; height: 100vh;">
+		<div class="center">
+		  <canvas id="gameCanvas" width="400" height="400"></canvas>
+		  <a href="1index.html" class="button" style="display: none;">佳佳和习狗的抽奖页面</a>
+		</div>
+	  
+		<div class="content"></div>
+	  
+		<div class="buttons-container">
+		  <a href="1index.html" class="button">佳佳和习狗的抽奖页面</a>
+		  <a href="3YANG.index.html" class="button">养了个杨小游戏</a>
+		</div>
+	  
+		<style>
+		  .center {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			height: 100%;
+		  }
+	  
+		  .buttons-container {
+			position: fixed;
+			bottom: 20px;
+			left: 20px;
+		  }
+	  
+		  .button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			text-decoration: none;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 20px;
+			transition: transform 0.3s ease-in-out;
+			margin: 10px 0;
+		  }
+	  
+		  .button:hover {
+			transform: scale(1.2);
+		  }
+	  
+		  .animate {
+			animation: fade-in 1s ease-in-out;
+		  }
+	  
+		  @keyframes fade-in {
+			0% {
+			  opacity: 0;
+			}
+			100% {
+			  opacity: 1;
+			}
+		  }
+		</style>
+	  </body>
 		  
 			<script>
 			  var button = document.querySelector('.button');
